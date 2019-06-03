@@ -30,17 +30,19 @@ def get_contests(driver):
 def with_like(driver, token, rep):
         x = 0
         with open('{}.txt'.format(datetime.datetime.now().strftime("%d%m%Y-%H%M%S")), 'w') as f:
-            for i in rep:
-                    driver.get('https://lolzteam.net/'+i)
-                    like_url = driver.find_elements_by_xpath("//a[@class='Tooltip PopupTooltip LikeLink item control like']")[0].get_attribute('href')
-                    driver.get(like_url)
-                    driver.find_element_by_xpath("//input[@type='submit']").click()
-                    rep[x] = 'https://lolzteam.net/'+i+'participate?_xfToken='+token
-                    driver.get(rep[x])
-                    f.write(rep[x])
-                    x += 1
-        driver.quit()
-        os.system("taskkill /im chromedriver.exe")
+                try:
+                        for i in rep:
+                            driver.get('https://lolzteam.net/'+i)
+                            like_url = driver.find_elements_by_xpath("//a[@class='Tooltip PopupTooltip LikeLink item control like']")[0].get_attribute('href')
+                            driver.get(like_url)
+                            driver.find_element_by_xpath("//input[@type='submit']").click()
+                            rep[x] = 'https://lolzteam.net/'+i+'participate?_xfToken='+token
+                            driver.get(rep[x])
+                            f.write(rep[x])
+                            x += 1
+                except: pass
+                driver.quit()
+                os.system("taskkill /im chromedriver.exe")
 
 def simple(driver, token, rep):
         x = 0
