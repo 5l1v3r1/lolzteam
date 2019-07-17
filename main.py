@@ -13,15 +13,15 @@ def login(driver):
 def get_contests(driver):
         one = driver.get('https://lolzteam.net/forums/contests/')
         html1 = driver.page_source
-        first = re.findall(r'threads\/\d{6}\/', html1)
+        first = re.findall(r'threads\/\d{6,10}\/', html1)
 
         two = driver.get('https://lolzteam.net/forums/contests/page-2')
         html2 = driver.page_source
-        second = re.findall(r'threads\/\d{6}\/', html2)
+        second = re.findall(r'threads\/\d{6,10}\/', html2)
 
         three = driver.get('https://lolzteam.net/forums/contests/page-3')
         html3 = driver.page_source
-        third = re.findall(r'threads\/\d{6}\/', html3)
+        third = re.findall(r'threads\/\d{6,10}\/', html3)
 
         all = first + second + third
         rep = list(dict.fromkeys(all))
